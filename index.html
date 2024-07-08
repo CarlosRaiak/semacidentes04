@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Dias Sem Acidentes</title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            background-image: url(pronto-socorro.jpg), url();
+            background-size: cover;
+            
+        }
+        h2{
+            font-size: 30px;
+            margin: -200px 0 40px;
+
+        }
+        h3{
+            font-size: 40px;
+        }
+        h4{
+            font-size: 30px;
+        }
+        #painel {
+
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+            
+        }
+        #painel h1 {
+            margin: 0 0 10px;
+        }
+        #painel p {
+            font-size: 1.5em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="painel">
+        <h2>ESTAMOS TRABALHANDO HÁ
+        <p id="dias"></p></h2>
+<h3> SEM ACIDENTES DE TRABALHO</h3>
+<h4>Nosso recorde é de 125 dias </h4>
+    </div>
+    <script>
+        function atualizarPainel() {
+            // Data inicial (21 de maio de 2024)
+            const dataInicial = new Date('2024-05-21T00:00:00');
+            const dataAtual = new Date();
+            const diferencaEmMilissegundos = dataAtual - dataInicial;
+
+            // Calcular a diferença em dias, horas, minutos e segundos
+            const diferencaEmDias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+            const diferencaEmHoras = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const diferencaEmMinutos = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60)) / (1000 * 60));
+            const diferencaEmSegundos = Math.floor((diferencaEmMilissegundos % (1000 * 60)) / 1000);
+
+            // Atualizar o painel
+            document.getElementById('dias').textContent =
+                `${diferencaEmDias} dias, ${diferencaEmHoras} horas, ` +
+                `${diferencaEmMinutos} minutos, ${diferencaEmSegundos} segundos`;
+        }
+
+        // Atualizar o painel a cada segundo
+        setInterval(atualizarPainel, 1000);
+        // Chamada inicial para atualizar imediatamente
+        atualizarPainel();
+    </script>
+    
+</body>
+</html>
